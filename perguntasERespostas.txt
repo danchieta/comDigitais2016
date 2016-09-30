@@ -1,0 +1,4 @@
+Por que usar a ESD e não a PSD?
+Por que o sinal te áudio tem duração finita. O que faz dele um sinal de energia.
+
+Qual foi o impacto da taxa de amostragem na qualidade da voz?

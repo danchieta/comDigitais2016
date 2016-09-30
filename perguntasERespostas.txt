@@ -1,4 +1,17 @@
-Por que usar a ESD e não a PSD?
+- Por que usar a ESD e não a PSD?
 Por que o sinal te áudio tem duração finita. O que faz dele um sinal de energia.
 
-Qual foi o impacto da taxa de amostragem na qualidade da voz?
+- Qual foi o impacto da taxa de amostragem na qualidade da voz?
+O tom da voz fica mais grave quanto menor a frequência de amostragem.
+
+- A partir de qual taxa de amostragem a qualidade passa a ser sofrível? 
+A voz fica indistinguível a partis de 4096kHz.
+
+- Como isso se compara com o mínimo teórico?  
+A queda na largura de banda do sinal é diretamente proporcional à redução na taxa de amostragem. Como observado abaixo:
+
+larguraBanda16 =  6447.6
+largirabanda8 =  3385.0
+larguraBanda4 =  1977.6
+largirabanda2 =  1020.5
+

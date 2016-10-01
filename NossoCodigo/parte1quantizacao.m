@@ -31,18 +31,28 @@ xq2 = uniformquantize(x8k,2);
 
 figure(1)
 plot(x8k - xq1k);
+title('Gráfico erro de sinal quantizado e 1024 níveis')
+ylabel('erro')
 
 figure(2)
 plot(x8k - xq256);
+title('Gráfico erro de sinal quantizado e 256 níveis')
+ylabel('erro')
 
 figure(3)
 plot(x8k - xq64);
+title('Gráfico erro de sinal quantizado e 64 níveis')
+ylabel('erro')
 
 figure(4)
 plot(x8k - xq16);
+title('Gráfico erro de sinal quantizado e 16 níveis')
+ylabel('erro')
 
 figure(5)
 plot(x8k - xq2);
+title('Gráfico erro de sinal quantizado e 2 níveis')
+ylabel('erro')
 
 %% SNR dos sinais quantizados.
 

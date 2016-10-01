@@ -21,7 +21,7 @@ Quantização
 ===========
 
 - Com que quantidade de níveis a qualidade da voz fica ruim (ou seja,quantos bits são necessários para quantizar o sinal de maneira correta?)
-A qualidade fica ruim com menos de 256 níveis ou 8 bits de quantização.
+A qualidade fica muito ruim com menos de 16 níveis ou 4 bits de quantização.
 
 Ganho de Amplificador
 =====================
@@ -34,4 +34,17 @@ Pior.
 
 - Faça novamente usando com w = 2*uniformquantize(5*x, 16); Como este sinal soa?
 Uma bosta.
+
+- O que isso indica sobre (a) o impacto de controle de erro incorreto e (b) a importância das diferentes partes da forma de onda?
+Oi?
+
+Quantizador Não Linear
+======================
+
+- Escute z e x_q. Qual soa melhor?
+z soa melhor do que x_q.
+
+A melhor combinação é fs = 8192kHz e quantização de 4 bits/16 níveis. Pois foi a conbinação que apresentou melhor relação custo/benefício.
+
+
 

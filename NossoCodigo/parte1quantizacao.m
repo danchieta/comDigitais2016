@@ -1,4 +1,4 @@
-  % Arthur Ramos
+% Arthur Ramos
 % David Anchieta
 % Hanna Carvalho
 % Itamar de aguiar
@@ -6,57 +6,36 @@
 % Não precisa executar o script todo sempre.
 % Basta selecionar as linhas que quer executar e apertar F9.
 
-% Este script analiza os efeitos da quantização do sinal
-
 %% Configuracao inicial
 addpath('../Primeiro_trabalho_funcoes')
-load('original66khz') % carrega o audio original com taxa de amostragem
+load('audio8khz.mat') % carrega o audio com taxa de amostragem
+time8khz = 0:1/f_s8:(length(x8k)-1)/f_s8;
+
+%% Quantizando o sinal
+% Numero de niveis: 4 16 64 256 1024
 
 
-%% Analise de ESD
-EnergySpectralDensity(original, fs);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=65536')
+xq1k = uniformquantize(x8k,1024);
 
-%%Analise de largura de banda
-Bandwidth(original, fs, 0.999);
+xq256 = uniformquantize(x8k,256);
 
-%% Reamostrando o sinal
-% Tente varias taxas de amostragem entre f_s = 2048 e f_s = 16384.
+xq64 = uniformquantize(x8k,64);
 
-f_s16 = 16384;
-x16k = sample(original,f_s16);
-EnergySpectralDensity(original, f_s16);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=16384')
+xq16 = uniformquantize(x8k,16);
 
-f_s8 = 8192;
-x8k = sample(original,f_s8);
-EnergySpectralDensity(original, f_s8);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=8192')
+xq2 = uniformquantize(x8k,2);
 
+% sound(xq256, f_s8);
 
-f_s4 = 4096;
-x4k = sample(original,f_s4);
-EnergySpectralDensity(original, f_s4);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=4096')
+%% Plotando o sinal de erro
 
-f_s2 = 2048;
-x2k = sample(original,f_s2);
-EnergySpectralDensity(original, f_s2);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=2048')
-
-
-%% Analise dos sinais reamostrados
-
-larguraBanda16 = Bandwidth(x16k, f_s16, 0.999)
-
-largirabanda8 = Bandwidth(x8k, f_s8, 0.999)
-
-larguraBanda4 = Bandwidth(x4k, f_s4, 0.999)
-
-largirabanda2 = Bandwidth(x2k, f_s2, 0.999)
-
+figure(1)
+plot(x8k - xq1k);
+figure(2)
+plot(x8k - xq256);
+figure(3)
+plot(x8k - xq64);
+figure(4)
+plot(x8k - xq16);
+figure(5)
+plot(x8k - xq2);

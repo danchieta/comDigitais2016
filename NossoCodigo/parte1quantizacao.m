@@ -31,11 +31,34 @@ xq2 = uniformquantize(x8k,2);
 
 figure(1)
 plot(x8k - xq1k);
+
 figure(2)
 plot(x8k - xq256);
+
 figure(3)
 plot(x8k - xq64);
+
 figure(4)
 plot(x8k - xq16);
+
 figure(5)
 plot(x8k - xq2);
+
+%% SNR dos sinais quantizados.
+
+
+SNRq1k = snr(x8k, x8k - xq1k)
+
+
+SNRq256 = snr(x8k, x8k - xq256)
+
+
+SNRq64 = snr(x8k, x8k - xq64)
+
+
+SNRq16 = snr(x8k, x8k - xq16)
+
+
+SNRq2 = snr(x8k, x8k - xq2)
+
+%% 

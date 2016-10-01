@@ -66,14 +66,14 @@ largirabanda2 = Bandwidth(x2k, f_s2, 0.999)
 % Tudo isso pra poder comparar cada sinal com o original usando SNR.
 
 time16k = 0:1/f_s16:(length(x16k)-1)/f_s16;
-snr16khz = snr(original,interp1(time16k, x16k, timeoriginal))
+snr16khz = snr(original,original - interp1(time16k, x16k, timeoriginal)')
 
 time8k = 0:1/f_s8:(length(x8k)-1)/f_s8;
-snr8khz = snr(original,interp1(time8k, x8k, timeoriginal))
+snr8khz = snr(original,original - interp1(time8k, x8k, timeoriginal)')
 
-time4k = 0:1/f_s4:(length(x4k)-1)/f_s14;
-snr4khz = snr(original,interp1(time4k, x4k, timeoriginal))
+time4k = 0:1/f_s4:(length(x4k)-1)/f_s4;
+snr4khz = snr(original,original - interp1(time4k, x4k, timeoriginal)')
 
 time2k = 0:1/f_s2:(length(x2k)-1)/f_s2;
-snr2khz = snr(original,interp1(time2k, x2k, timeoriginal))
+snr2khz = snr(original,original - interp1(time2k, x2k, timeoriginal)')
 

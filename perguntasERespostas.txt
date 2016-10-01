@@ -1,3 +1,5 @@
+Reamostragem
+============
 - Por que usar a ESD e não a PSD?
 Por que o sinal te áudio tem duração finita. O que faz dele um sinal de energia.
 
@@ -11,7 +13,25 @@ A voz fica indistinguível a partis de 4096kHz.
 A queda na largura de banda do sinal é diretamente proporcional à redução na taxa de amostragem. Como observado abaixo:
 
 larguraBanda16 =  6447.6
-largirabanda8 =  3385.0
+largurabanda8 =  3385.0
 larguraBanda4 =  1977.6
-largirabanda2 =  1020.5
+largurabanda2 =  1020.5
+
+Quantização
+===========
+
+- Com que quantidade de níveis a qualidade da voz fica ruim (ou seja,quantos bits são necessários para quantizar o sinal de maneira correta?)
+A qualidade fica ruim com menos de 256 níveis ou 8 bits de quantização.
+
+Ganho de Amplificador
+=====================
+
+- Ouça o sinal quantizado. Como ficou?
+Ruim.
+
+- Faça outra vez com z = 2*uniformquantize(0.5*x, 16); Ouça o novo sinal. Como ficou comparado ao anterior?
+Pior.
+
+- Faça novamente usando com w = 2*uniformquantize(5*x, 16); Como este sinal soa?
+Uma bosta.
 

@@ -5,6 +5,7 @@
 
 %% Configuração inicial
 load('audioDigital8khz6bit.mat')
+addpath('../SegundoTrabalhoArquivos')
 
 %% Modulação PSK
 

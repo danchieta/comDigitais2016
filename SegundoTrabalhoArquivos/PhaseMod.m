@@ -28,7 +28,7 @@ a = size(x,1);
 b = reshape(x,a/l,l);
 
 if nargin > 2
-    if GrayCoding & bits > 1
+    if GrayCoding && bits > 1
         b_g(:,1) = b(:,1);
         for i = 2:bits
             b_g(:,i) = xor(b(:,i-1), b(:,i));

@@ -1,4 +1,4 @@
-function y = analog2digital(x, f_s, bits, companding, mu, f_s_original)
+function y = Analog2Digital(x, f_s, bits, companding, mu, f_s_original)
 
 %  function y = analog2digital(x, f_s, bits, companding, mu, f_s_original)
 %

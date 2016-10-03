@@ -104,3 +104,14 @@ scatter(real(xQAMn), imag(xQAMn))
 title('constelação xQAM com ruído')
 xlabel('real')
 ylabel('imag')
+
+%% Demodulação (e 'conversão' DA) dos sinais com ruído
+
+demxBPSK = Digital2Analog(PhaseDemod(xBPSKn,2,0),k,0,0);
+demxQPSK = Digital2Analog(PhaseDemod(xQPSKn,4,0),k,0,0);
+demx8PSK = Digital2Analog(PhaseDemod(x8PSKn,8,0),k,0,0);
+demx16PSK = Digital2Analog(PhaseDemod(x16PSKn,16,0),k,0,0);
+demx32PSK = Digital2Analog(PhaseDemod(x32PSKn,32,0),k,0,0);
+demxBPSK = QAM16_Demod(PhaseDemod(xQAMn),k,0,0);
+
+% sound(demxBPSK, fs8k)

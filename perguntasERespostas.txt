@@ -36,7 +36,6 @@ Pior.
 Pior que o anterior
 
 - O que isso indica sobre (a) o impacto de controle de erro incorreto e (b) a importância das diferentes partes da forma de onda?
-Oi?
 
 Quantizador Não Linear
 ======================
@@ -45,6 +44,22 @@ Quantizador Não Linear
 z soa melhor do que x_q.
 
 A melhor combinação é fs = 8192kHz e quantização de 4 bits/16 níveis. Pois foi a conbinação que apresentou melhor relação custo/benefício.
+
+SNR Amostragem Voz
+==================
+snr16khz =  700.42
+snr8khz =  221.31
+snr4khz =  64.500
+snr2khz = NA
+
+SNR Quantizacao Voz
+===================
+SNRq1k = 1.8521e+04
+SNRq256 = 1.1458e+03
+SNRq64 = 69.2478
+SNRq16 = 2.9483
+SNRq2 = 0.0279
+
 
 
 

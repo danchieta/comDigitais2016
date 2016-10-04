@@ -14,8 +14,8 @@ timeoriginal = 0:1/fs:(length(original)-1)/fs;
 
 %% Analise de ESD
 EnergySpectralDensity(original, fs);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=65536')
+xlim([-1500,1500]) % Limita o gráfico à parte que interessa
+title('ESD sinal de voz amostrado f_s=65536Hz')
 
 %%Analise de largura de banda
 Bandwidth(original, fs, 0.999);
@@ -26,38 +26,38 @@ Bandwidth(original, fs, 0.999);
 f_s16 = 16384;
 x16k = sample(original,f_s16);
 EnergySpectralDensity(original, f_s16);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=16384')
+xlim([-1500,1500]) % Limita o gráfico à parte que interessa
+title('ESD sinal de voz amostrado f_s=16384Hz')
 
 f_s8 = 8192;
 x8k = sample(original,f_s8);
 EnergySpectralDensity(original, f_s8);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=8192')
+xlim([-1500,1500]) % Limita o gráfico à parte que interessa
+title('ESD sinal de voz amostrado f_s=8192Hz')
 
 
 f_s4 = 4096;
 x4k = sample(original,f_s4);
 EnergySpectralDensity(original, f_s4);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=4096')
+xlim([-1500,1500]) % Limita o gráfico à parte que interessa
+title('ESD sinal de voz amostrado f_s=4096Hz')
 
 f_s2 = 2048;
 x2k = sample(original,f_s2);
 EnergySpectralDensity(original, f_s2);
-axis([-1500,1500]) % Limita o gráfico à parte que interessa
-title('ESD sinal amostrado f_s=2048')
+xlim([-1500,1500]) % Limita o gráfico à parte que interessa
+title('ESD sinal de voz amostrado f_s=2048Hz')
 
 
 %% Analise da largura de banda dos sinais reamostrados
 
 larguraBanda16 = Bandwidth(x16k, f_s16, 0.999)
 
-largirabanda8 = Bandwidth(x8k, f_s8, 0.999)
+largurabanda8 = Bandwidth(x8k, f_s8, 0.999)
 
 larguraBanda4 = Bandwidth(x4k, f_s4, 0.999)
 
-largirabanda2 = Bandwidth(x2k, f_s2, 0.999)
+largurabanda2 = Bandwidth(x2k, f_s2, 0.999)
 
 %% analise da SNR - relação sinal ruido - dos sinais reamostrados
 % Precisamos calcular o eixo do tempo das amostras de cada sinal.
@@ -76,4 +76,3 @@ snr4khz = snr(original,original - interp1(time4k, x4k, timeoriginal)')
 
 time2k = 0:1/f_s2:(length(x2k)-1)/f_s2;
 snr2khz = snr(original,original - interp1(time2k, x2k, timeoriginal)')
-

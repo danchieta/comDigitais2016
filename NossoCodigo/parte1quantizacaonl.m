@@ -3,7 +3,7 @@
 % Hanna Carvalho
 % Itamar de aguiar
 
-% N√£o precisa executar o script todo sempre.
+% N„o precisa executar o script todo sempre.
 % Basta selecionar as linhas que quer executar e apertar F9.
 
 %% Configuracao inicial
@@ -28,20 +28,21 @@ z = expand(y_q, 255);
 
 figure(1)
 plot(x8k - z);
-title('Gr√°fico erro de z (x8k-z)')
+title('Gr·fico erro de z (x8k-z)')
 ylabel('erro')
 
 figure(2)
 plot(x8k - x_q);
-title('Gr√°fico erro de x_q (x8k-x_q)')
+title('Gr·fico erro de x_q (x8k-x_q)')
 ylabel('erro')
 
 %% SNR dos sinais quantizados.
 
-
 SNRz = snr(x8k, x8k - z)
-
-
 SNRx_q = snr(x8k, x8k - x_q)
 
 %% 
+
+for k=1:2
+    saveas(figure(k), ['../PlotsTrab1/' num2str(k+10) 'erroQuantCompressVoz.png']);
+end

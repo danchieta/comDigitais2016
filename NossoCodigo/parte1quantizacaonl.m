@@ -22,7 +22,7 @@ y_q = uniformquantize(y, 16);
 
 z = expand(y_q, 255);
 
-% sound(x_q, f_s8);
+% sound(z, f_s8);
 
 %% Plotando o sinal de erro
 

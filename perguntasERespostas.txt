@@ -33,7 +33,7 @@ Ruim.
 Pior.
 
 - Faça novamente usando com w = 2*uniformquantize(5*x, 16); Como este sinal soa?
-Uma bosta.
+Pior que o anterior
 
 - O que isso indica sobre (a) o impacto de controle de erro incorreto e (b) a importância das diferentes partes da forma de onda?
 Oi?

@@ -65,6 +65,24 @@ SNR Quantização Não Linear
 SNRz = 19.4648  % sinal comprimido, quantizado e expandido
 SNRx_q = 2.9483 % sinal quantizado
 
+Largura de banda do sinal de música
+===================================
+larguraBandaOriginal = 1.1440e+04 
+larguraBanda16 = 7.7281e+03
+largurabanda8 = 4.0611e+03
+larguraBanda4 = 2.0314e+03
+largurabanda2 = 1.0218e+03
 
+SNR Quantização Música
+======================
+SNRq1k = 1.1342e+05
+SNRq256 = 7.0765e+03
+SNRq64 = 442.6270
+SNRq16 = 27.6630
+SNRq2 = 0.2535
 
-
+SNR Ganho Musica
+================
+SNRy = 27.6630
+SNRz = 6.8330
+SNRq = 0.0288

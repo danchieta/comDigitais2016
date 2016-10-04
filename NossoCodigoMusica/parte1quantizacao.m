@@ -3,7 +3,7 @@
 % Hanna Carvalho
 % Itamar de aguiar
 
-% NÃ£o precisa executar o script todo sempre.
+% Não precisa executar o script todo sempre.
 % Basta selecionar as linhas que quer executar e apertar F9.
 
 %% Configuracao inicial
@@ -31,44 +31,38 @@ xq2 = uniformquantize(x8k,2);
 
 figure(1)
 plot(x8k - xq1k);
-title('GrÃ¡fico erro de sinal quantizado e 1024 nÃ­veis')
+title('Gráfico erro de sinal quantizado e 1024 níveis')
 ylabel('erro')
 
 figure(2)
 plot(x8k - xq256);
-title('GrÃ¡fico erro de sinal quantizado e 256 nÃ­veis')
+title('Gráfico erro de sinal quantizado e 256 níveis')
 ylabel('erro')
 
 figure(3)
 plot(x8k - xq64);
-title('GrÃ¡fico erro de sinal quantizado e 64 nÃ­veis')
+title('Gráfico erro de sinal quantizado e 64 níveis')
 ylabel('erro')
 
 figure(4)
 plot(x8k - xq16);
-title('GrÃ¡fico erro de sinal quantizado e 16 nÃ­veis')
+title('Gráfico erro de sinal quantizado e 16 níveis')
 ylabel('erro')
 
 figure(5)
 plot(x8k - xq2);
-title('GrÃ¡fico erro de sinal quantizado e 2 nÃ­veis')
+title('Gráfico erro de sinal quantizado e 2 níveis')
 ylabel('erro')
 
 %% SNR dos sinais quantizados.
-
-
 SNRq1k = snr(x8k, x8k - xq1k)
-
-
 SNRq256 = snr(x8k, x8k - xq256)
-
-
 SNRq64 = snr(x8k, x8k - xq64)
-
-
 SNRq16 = snr(x8k, x8k - xq16)
-
-
 SNRq2 = snr(x8k, x8k - xq2)
 
 %% 
+
+for k=1:5
+    saveas(figure(k), ['../PlotsTrab1/' num2str(k+17) 'erroQuantMusica.png']);
+end

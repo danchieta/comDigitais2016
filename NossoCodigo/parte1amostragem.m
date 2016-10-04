@@ -25,26 +25,26 @@ Bandwidth(original, fs, 0.999);
 
 f_s16 = 16384;
 x16k = sample(original,f_s16);
-EnergySpectralDensity(original, f_s16);
+EnergySpectralDensity(x16k, f_s16);
 xlim([-1500,1500]) % Limita o gráfico à parte que interessa
 title('ESD sinal de voz amostrado f_s=16384Hz')
 
 f_s8 = 8192;
 x8k = sample(original,f_s8);
-EnergySpectralDensity(original, f_s8);
+EnergySpectralDensity(x8k, f_s8);
 xlim([-1500,1500]) % Limita o gráfico à parte que interessa
 title('ESD sinal de voz amostrado f_s=8192Hz')
 
 
 f_s4 = 4096;
 x4k = sample(original,f_s4);
-EnergySpectralDensity(original, f_s4);
+EnergySpectralDensity(x4k, f_s4);
 xlim([-1500,1500]) % Limita o gráfico à parte que interessa
 title('ESD sinal de voz amostrado f_s=4096Hz')
 
 f_s2 = 2048;
 x2k = sample(original,f_s2);
-EnergySpectralDensity(original, f_s2);
+EnergySpectralDensity(x2k, f_s2);
 xlim([-1500,1500]) % Limita o gráfico à parte que interessa
 title('ESD sinal de voz amostrado f_s=2048Hz')
 
@@ -76,3 +76,5 @@ snr4khz = snr(original,original - interp1(time4k, x4k, timeoriginal)')
 
 time2k = 0:1/f_s2:(length(x2k)-1)/f_s2;
 snr2khz = snr(original,original - interp1(time2k, x2k, timeoriginal)')
+
+

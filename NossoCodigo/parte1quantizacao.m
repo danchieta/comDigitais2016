@@ -56,7 +56,6 @@ ylabel('erro')
 
 %% SNR dos sinais quantizados.
 
-
 SNRq1k = snr(x8k, x8k - xq1k)
 SNRq256 = snr(x8k, x8k - xq256)
 SNRq64 = snr(x8k, x8k - xq64)

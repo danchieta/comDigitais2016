@@ -119,15 +119,31 @@ axis square
 
 %% Demodulação (e 'conversão' DA) dos sinais com ruído
 
-demxBPSK = Digital2Analog(PhaseDemod(xBPSKn,2,0),k,0,0);
-demxQPSK = Digital2Analog(PhaseDemod(xQPSKn,4,0),k,0,0);
-demx8PSK = Digital2Analog(PhaseDemod(x8PSKn,8,0),k,0,0);
-demx16PSK = Digital2Analog(PhaseDemod(x16PSKn,16,0),k,0,0);
-demx32PSK = Digital2Analog(PhaseDemod(x32PSKn,32,0),k,0,0);
-demxBPSK = QAM16_Demod(PhaseDemod(xQAMn),k,0,0);
+BPSKdemod = PhaseDemod(xBPSKn,2,0);
+analogBPSK = Digital2Analog(BPSKdemod,k,0,0);
 
-% sound(demxBPSK, fs8k)
+QPSKdemod = PhaseDemod(xQPSKn,4,0);
+demxQPSK = Digital2Analog(QPSKdemod,k,0,0);
 
-for k=1:12
-    saveas(figure(k), ['./figuras/modula' num2str(k) '.png']);    
-end
+PSK8demod = PhaseDemod(x8PSKn,8,0);
+demx8PSK = Digital2Analog(PSK8demod,k,0,0);
+
+QAMdemod = QAM16_demod(xQAMn);
+demxQAM16 = Digital2Analog(QAMdemod,k,0,0);
+
+% O script demora tempo demais para demodular os seguintes sinais
+% demod16psk = PhaseDemod(x16PSKn,16,0);
+% demx16PSK = Digital2Analog(demod16psk,k,0,0);
+% demx32PSK = Digital2Analog(PhaseDemod(x32PSKn,32,0),k,0,0);
+
+% sound(demxQAM16, fs8k)
+
+%% Taxa de erro por bit
+BER_BPSK = sum(x8khz6b ~= BPSKdemod')/length(x8khz6b)
+BER_QPSK = sum(x8khz6b ~= QPSKdemod')/length(x8khz6b)
+BER_16PSK = sum(x8khz6b ~= PSK8demod')/length(x8khz6b)
+BER_QUAM = sum(x8khz6b ~= QAMdemod')/length(x8khz6b)
+
+% for k=1:12
+%     saveas(figure(k), ['./figuras/modula' num2str(k) '.png']);    
+% end

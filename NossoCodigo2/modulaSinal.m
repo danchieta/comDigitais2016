@@ -3,11 +3,11 @@
 % Itamar de Aguiar
 % Hanna Carvalho
 
-%% ConfiguraÃ§Ã£o inicial
+%% Configuração inicial
 load('audioDigital8khz6bit.mat')
 addpath('../SegundoTrabalhoArquivos')
 
-%% ModulaÃ§Ã£o PSK
+%% Modulação PSK
 
 xBPSK = PhaseMod(x8khz6b, 2, 0);
 xQPSK = PhaseMod(x8khz6b, 4, 0);
@@ -15,49 +15,55 @@ x8PSK = PhaseMod(x8khz6b, 8, 0);
 x16PSK = PhaseMod(x8khz6b, 16, 0);
 x32PSK = PhaseMod(x8khz6b, 32, 0);
 
-%% ModulaÃ§Ã£o QAM
+%% Modulação QAM
 
 xQAM = QAM16_mod(x8khz6b);
 
-%% Plot de constelaÃ§Ã£o dos sinais sem ruÃ­do
+%% Plot de constelação dos sinais sem ruído
 
 figure(1)
 scatter(real(xBPSK), imag(xBPSK))
-title('constelaÃ§Ã£o xBPSK sem ruÃ­do')
+title('constelação xBPSK sem ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(2)
 scatter(real(xQPSK), imag(xQPSK))
-title('constelaÃ§Ã£o xQPSK sem ruÃ­do')
+title('constelação xQPSK sem ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
-figura(3)
+figure(3)
 scatter(real(x8PSK), imag(x8PSK))
-title('constelaÃ§Ã£o x8PSK sem ruÃ­do')
+title('constelação x8PSK sem ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(4)
 scatter(real(x16PSK), imag(x16PSK))
-title('constelaÃ§Ã£o x16PSK sem ruÃ­do')
+title('constelação x16PSK sem ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(5)
 scatter(real(x32PSK), imag(x32PSK))
-title('constelaÃ§Ã£o x32PSK sem ruÃ­do')
+title('constelação x32PSK sem ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(6)
 scatter(real(xQAM), imag(xQAM))
-title('constelaÃ§Ã£o xQAM sem ruÃ­do')
+title('constelação xQAM sem ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
-%% Adicionando ruÃ­do aos sinais
+%% Adicionando ruído aos sinais
 SNRbit = 10^0.8;
 xBPSKn = AddNoise(xBPSK, SNRbit, 2);
 xQPSKn = AddNoise(xQPSK, SNRbit, 4);
@@ -67,45 +73,51 @@ x32PSKn = AddNoise(x32PSK, SNRbit, 32);
 
 xQAMn = AddNoise(xQAM, SNRbit, 16);
 
-%% ConstelaÃ§Ãµes dos sinais com ruÃ­do
+%% Constelações dos sinais com ruído
 
 figure(7)
 scatter(real(xBPSKn), imag(xBPSKn))
-title('constelaÃ§Ã£o xBPSK com ruÃ­do')
+title('constelação xBPSK com ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(8)
 scatter(real(xQPSKn), imag(xQPSKn))
-title('constelaÃ§Ã£o xQPSK com ruÃ­do')
+title('constelação xQPSK com ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
-figura(9)
+figure(9)
 scatter(real(x8PSKn), imag(x8PSKn))
-title('constelaÃ§Ã£o x8PSK com ruÃ­do')
+title('constelação x8PSK com ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(10)
 scatter(real(x16PSKn), imag(x16PSKn))
-title('constelaÃ§Ã£o x16PSK com ruÃ­do')
+title('constelação x16PSK com ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(11)
 scatter(real(x32PSKn), imag(x32PSKn))
-title('constelaÃ§Ã£o x32PSK com ruÃ­do')
+title('constelação x32PSK com ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
 figure(12)
 scatter(real(xQAMn), imag(xQAMn))
-title('constelaÃ§Ã£o xQAM com ruÃ­do')
+title('constelação xQAM com ruído')
 xlabel('real')
 ylabel('imag')
+axis square
 
-%% DemodulaÃ§Ã£o (e 'conversÃ£o' DA) dos sinais com ruÃ­do
+%% Demodulação (e 'conversão' DA) dos sinais com ruído
 
 demxBPSK = Digital2Analog(PhaseDemod(xBPSKn,2,0),k,0,0);
 demxQPSK = Digital2Analog(PhaseDemod(xQPSKn,4,0),k,0,0);
@@ -115,3 +127,7 @@ demx32PSK = Digital2Analog(PhaseDemod(x32PSKn,32,0),k,0,0);
 demxBPSK = QAM16_Demod(PhaseDemod(xQAMn),k,0,0);
 
 % sound(demxBPSK, fs8k)
+
+for k=1:12
+    saveas(figure(k), ['./figuras/modula' num2str(k) '.png']);    
+end

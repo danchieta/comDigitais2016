@@ -9,11 +9,11 @@ addpath('../SegundoTrabalhoArquivos')
 
 %% Modulação PSK
 
-xBPSK = PhaseMod(x8khz6b, 2, 0);
-xQPSK = PhaseMod(x8khz6b, 4, 0);
-x8PSK = PhaseMod(x8khz6b, 8, 0);
-x16PSK = PhaseMod(x8khz6b, 16, 0);
-x32PSK = PhaseMod(x8khz6b, 32, 0);
+xBPSK = PhaseMod(x8khz6b, 1, 0);
+xQPSK = PhaseMod(x8khz6b, 2, 0);
+x8PSK = PhaseMod(x8khz6b, 3, 0);
+x16PSK = PhaseMod(x8khz6b, 4, 0);
+x32PSK = PhaseMod(x8khz6b, 5, 0);
 
 %% Modulação QAM
 
@@ -65,13 +65,13 @@ axis square
 
 %% Adicionando ruído aos sinais
 SNRbit = 10^0.8;
-xBPSKn = AddNoise(xBPSK, SNRbit, 2);
-xQPSKn = AddNoise(xQPSK, SNRbit, 4);
-x8PSKn = AddNoise(x8PSK, SNRbit, 8);
-x16PSKn = AddNoise(x16PSK, SNRbit, 16);
-x32PSKn = AddNoise(x32PSK, SNRbit, 32);
+xBPSKn = AddNoise(xBPSK, SNRbit, 1);
+xQPSKn = AddNoise(xQPSK, SNRbit, 2);
+x8PSKn = AddNoise(x8PSK, SNRbit, 3);
+x16PSKn = AddNoise(x16PSK, SNRbit, 4);
+x32PSKn = AddNoise(x32PSK, SNRbit, 5);
 
-xQAMn = AddNoise(xQAM, SNRbit, 16);
+xQAMn = AddNoise(xQAM, SNRbit, 4);
 
 %% Constelações dos sinais com ruído
 
@@ -119,29 +119,33 @@ axis square
 
 %% Demodulação (e 'conversão' DA) dos sinais com ruído
 
-demodBPSK = PhaseDemod(xBPSKn,2,0);
+demodBPSK = PhaseDemod(xBPSKn,1,0);
 analogBPSK = Digital2Analog(demodBPSK,k,0,0);
 
-demodQPSK = PhaseDemod(xQPSKn,4,0);
+demodQPSK = PhaseDemod(xQPSKn,2,0);
 analogQPSK = Digital2Analog(demodQPSK,k,0,0);
 
-demod8PSK = PhaseDemod(x8PSKn,8,0);
+demod8PSK = PhaseDemod(x8PSKn,3,0);
 analog8PSK = Digital2Analog(demod8PSK,k,0,0);
+
+demod16PSK = PhaseDemod(x16PSKn,4,0);
+analog16PSK = Digital2Analog(demod16PSK,k,0,0);
+
+analog32PSK = PhaseDemod(x32PSKn,5,0);
+demx32PSK = Digital2Analog(analog32PSK,k,0,0);
 
 demodQAM = QAM16_demod(xQAMn);
 analogQAM16 = Digital2Analog(demodQAM,k,0,0);
 
 % O script demora tempo demais para demodular os seguintes sinais
-% demod16psk = PhaseDemod(x16PSKn,16,0);
-% demx16PSK = Digital2Analog(demod16psk,k,0,0);
-% demx32PSK = Digital2Analog(PhaseDemod(x32PSKn,32,0),k,0,0);
 
 % sound(analogQAM16, fs8k)
 
 %% Taxa de erro por bit
 BER_BPSK = sum(x8khz6b ~= demodBPSK')/length(x8khz6b)
 BER_QPSK = sum(x8khz6b ~= demodQPSK')/length(x8khz6b)
-BER_16PSK = sum(x8khz6b ~= demod8PSK')/length(x8khz6b)
+BER_8PSK = sum(x8khz6b ~= demod8PSK')/length(x8khz6b)
+BER_16PSK = sum(x8khz6b ~= demod16PSK')/length(x8khz6b)
 BER_QUAM = sum(x8khz6b ~= demodQAM')/length(x8khz6b)
 
 

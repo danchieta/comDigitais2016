@@ -119,31 +119,56 @@ axis square
 
 %% Demodulação (e 'conversão' DA) dos sinais com ruído
 
-BPSKdemod = PhaseDemod(xBPSKn,2,0);
-analogBPSK = Digital2Analog(BPSKdemod,k,0,0);
+demodBPSK = PhaseDemod(xBPSKn,2,0);
+analogBPSK = Digital2Analog(demodBPSK,k,0,0);
 
-QPSKdemod = PhaseDemod(xQPSKn,4,0);
-demxQPSK = Digital2Analog(QPSKdemod,k,0,0);
+demodQPSK = PhaseDemod(xQPSKn,4,0);
+analogQPSK = Digital2Analog(demodQPSK,k,0,0);
 
-PSK8demod = PhaseDemod(x8PSKn,8,0);
-demx8PSK = Digital2Analog(PSK8demod,k,0,0);
+demod8PSK = PhaseDemod(x8PSKn,8,0);
+analog8PSK = Digital2Analog(demod8PSK,k,0,0);
 
-QAMdemod = QAM16_demod(xQAMn);
-demxQAM16 = Digital2Analog(QAMdemod,k,0,0);
+demodQAM = QAM16_demod(xQAMn);
+analogQAM16 = Digital2Analog(demodQAM,k,0,0);
 
 % O script demora tempo demais para demodular os seguintes sinais
 % demod16psk = PhaseDemod(x16PSKn,16,0);
 % demx16PSK = Digital2Analog(demod16psk,k,0,0);
 % demx32PSK = Digital2Analog(PhaseDemod(x32PSKn,32,0),k,0,0);
 
-% sound(demxQAM16, fs8k)
+% sound(analogQAM16, fs8k)
 
 %% Taxa de erro por bit
-BER_BPSK = sum(x8khz6b ~= BPSKdemod')/length(x8khz6b)
-BER_QPSK = sum(x8khz6b ~= QPSKdemod')/length(x8khz6b)
-BER_16PSK = sum(x8khz6b ~= PSK8demod')/length(x8khz6b)
-BER_QUAM = sum(x8khz6b ~= QAMdemod')/length(x8khz6b)
+BER_BPSK = sum(x8khz6b ~= demodBPSK')/length(x8khz6b)
+BER_QPSK = sum(x8khz6b ~= demodQPSK')/length(x8khz6b)
+BER_16PSK = sum(x8khz6b ~= demod8PSK')/length(x8khz6b)
+BER_QUAM = sum(x8khz6b ~= demodQAM')/length(x8khz6b)
 
-% for k=1:12
-%     saveas(figure(k), ['./figuras/modula' num2str(k) '.png']);    
-% end
+
+%% Plot dos sinais demodulados
+
+figure(13)
+plot([0:1/fs8k:(length(analogBPSK)-1)/fs8k], analogBPSK);
+title('Sinal demodulado e convertido DA. BPSK')
+xlabel('tempo (s)')
+
+
+figure(14)
+plot([0:1/fs8k:(length(analogBPSK)-1)/fs8k], analogQPSK);
+title('Sinal demodulado e convertido DA. QPSK')
+xlabel('tempo (s)')
+
+figure(15)
+plot([0:1/fs8k:(length(analogBPSK)-1)/fs8k], analog8PSK);
+title('Sinal demodulado e convertido DA. PSK 8 bits')
+xlabel('tempo (s)')
+
+figure(16)
+plot([0:1/fs8k:(length(analogBPSK)-1)/fs8k], analogQAM16);
+title('Sinal demodulado e convertido DA. QAM 16 bits')
+xlabel('tempo (s)')
+
+
+for k=13:16
+    saveas(figure(k), ['./figuras/modula' num2str(k) '.png']);    
+end

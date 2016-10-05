@@ -64,6 +64,6 @@ SNRq2 = snr(x8k, x8k - xq2)
 
 %% 
 
-for k=1:5
-    saveas(figure(k), ['../PlotsTrab1/' num2str(k+5) 'erroQuantVoz.png']);
-end
+% for k=1:5
+%     saveas(figure(k), ['../PlotsTrab1/' num2str(k+5) 'erroQuantVoz.png']);
+% end

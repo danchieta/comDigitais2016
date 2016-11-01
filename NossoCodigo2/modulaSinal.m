@@ -13,7 +13,7 @@ xBPSK = PhaseMod(x8khz6b, 1, 0);
 xQPSK = PhaseMod(x8khz6b, 2, 0);
 x8PSK = PhaseMod(x8khz6b, 3, 0);
 x16PSK = PhaseMod(x8khz6b, 4, 0);
-x32PSK = PhaseMod(x8khz6b, 5, 0);
+%x32PSK = PhaseMod(x8khz6b, 5, 0);
 
 %% Modulação QAM
 
@@ -69,7 +69,7 @@ xBPSKn = AddNoise(xBPSK, SNRbit, 1);
 xQPSKn = AddNoise(xQPSK, SNRbit, 2);
 x8PSKn = AddNoise(x8PSK, SNRbit, 3);
 x16PSKn = AddNoise(x16PSK, SNRbit, 4);
-x32PSKn = AddNoise(x32PSK, SNRbit, 5);
+%x32PSKn = AddNoise(x32PSK, SNRbit, 5);
 
 xQAMn = AddNoise(xQAM, SNRbit, 4);
 
@@ -131,8 +131,8 @@ analog8PSK = Digital2Analog(demod8PSK,k,0,0);
 demod16PSK = PhaseDemod(x16PSKn,4,0);
 analog16PSK = Digital2Analog(demod16PSK,k,0,0);
 
-analog32PSK = PhaseDemod(x32PSKn,5,0);
-demx32PSK = Digital2Analog(analog32PSK,k,0,0);
+% analog32PSK = PhaseDemod(x32PSKn,5,0);
+% demx32PSK = Digital2Analog(analog32PSK,k,0,0);
 
 demodQAM = QAM16_demod(xQAMn);
 analogQAM16 = Digital2Analog(demodQAM,k,0,0);
@@ -146,6 +146,7 @@ BER_BPSK = sum(x8khz6b ~= demodBPSK')/length(x8khz6b)
 BER_QPSK = sum(x8khz6b ~= demodQPSK')/length(x8khz6b)
 BER_8PSK = sum(x8khz6b ~= demod8PSK')/length(x8khz6b)
 BER_16PSK = sum(x8khz6b ~= demod16PSK')/length(x8khz6b)
+%BER_32PSK = sum(x8khz6b ~= demx32PSK')/length(x8khz6b)
 BER_QUAM = sum(x8khz6b ~= demodQAM')/length(x8khz6b)
 
 
@@ -168,11 +169,21 @@ title('Sinal demodulado e convertido DA. PSK 8 bits')
 xlabel('tempo (s)')
 
 figure(16)
+plot([0:1/fs8k:(length(analogBPSK)-1)/fs8k], analog16PSK);
+title('Sinal demodulado e convertido DA. PSK 8 bits')
+xlabel('tempo (s)')
+
+figure(17)
+plot([0:1/fs8k:(length(analogBPSK)-1)/fs8k], analog32PSK);
+title('Sinal demodulado e convertido DA. PSK 8 bits')
+xlabel('tempo (s)')
+
+figure(18)
 plot([0:1/fs8k:(length(analogBPSK)-1)/fs8k], analogQAM16);
 title('Sinal demodulado e convertido DA. QAM 16 bits')
 xlabel('tempo (s)')
 
-
-for k=13:16
+%% Salva figuras
+for k=7:18
     saveas(figure(k), ['./figuras/modula' num2str(k) '.png']);    
 end
